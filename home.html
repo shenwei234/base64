@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神威|Base64 编码/解码工具</title>
+    <link rel="icon" href="icon/icon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            resize: none; /* 禁止调整大小 */
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>神威|Base64 编码/解码工具</h1>
+        <div class="form-group">
+            <textarea id="inputText" placeholder="在此输入文本..." rows="5"></textarea>
+            <button id="encodeBtn">编码</button>
+            <button id="decodeBtn">解码</button>
+            <a href=""></a><button>更多编码/解码工具</button></a>
+            <a href="https://blog.shenwei233.cn"><button>返回博客</button></a>
+            <a href="https://shenwei233.cn"><button>返回主页</button></a>
+        </div>
+        <div class="form-group">
+            <textarea id="outputText" placeholder="结果将在此显示..." rows="5" readonly></textarea>
+        </div>
+        <p>©版权所有为<a href="https://www.shenwei233.cn" style="color:#006fa7">神威</a> | <a href="https://www.shenwei233.cn" style="color:#006fa7">神威</a>提供技术支持 | <a href="https://blog.shenwei233.cn/%e5%8f%8b%e6%83%85%e9%93%be%e6%8e%a5" target="_blank" style="color:#006fa7" title="点击查看友情链接">友情链接</a></p>
+        <p><a href="https://github.com/shenwei234/base64/" style="color:#006fa7">GitHub项目地址</a>欢迎使用base64编码/解码工具</p>
+    </div>
+    <script>
+        function encodeBase64(str) {
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        function decodeBase64(str) {
+            try {
+                return decodeURIComponent(escape(atob(str)));
+            } catch (e) {
+                return '无效的 Base64 输入';
+            }
+        }
+
+        document.getElementById('encodeBtn').addEventListener('click', () => {
+            const inputText = document.getElementById('inputText').value;
+            const encodedText = encodeBase64(inputText);
+            document.getElementById('outputText').value = encodedText;
+        });
+
+        document.getElementById('decodeBtn').addEventListener('click', () => {
+            const inputText = document.getElementById('inputText').value;
+            const decodedText = decodeBase64(inputText);
+            document.getElementById('outputText').value = decodedText;
+        });
+    </script>
+</body>
+</html>
